@@ -1,14 +1,30 @@
 var xhr = new XMLHttpRequest();
 
-console.log( xhr.readyState );
-
 xhr.open("GET", "o-nas.html", true);
 
-console.log( xhr.readyState );
+xhr.onreadystatechange = function (e) {
+  if (this.readyState === 4 && this.status === 200) {
+    console.log(this.response);
+  }
+};
+
+function logType(e) {
+  console.log(e.type);
+}
+
+xhr.timeout = 1;
+
+xhr.onloadstart = logType;
+xhr.onprogress = logType;
+xhr.onabort = logType;
+xhr.onerror = logType;
+xhr.onload = logType;
+xhr.ontimeout = logType;
+xhr.onloadend = logType;
 
 xhr.send(null);
 
-console.log( xhr.response );
+xhr.abort();
 
 // UNSENT = 0
 // OPENED = 1

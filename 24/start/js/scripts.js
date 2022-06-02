@@ -1,24 +1,24 @@
-(function() {
+(function () {
+  function JSONP(url, callbackName) {
+    var script = document.createElement("script");
 
-    function showData(data) {
+    script.type = "text/javascript";
+    script.async = true;
+    script.src = url + "?callback=" + callbackName;
 
-        var pre = document.createElement("pre");
+    document.head.appendChild(script);
+  }
 
-        pre.textContent = JSON.stringify(data);
-        document.body.appendChild(pre);
+  function showData(data) {
+    var pre = document.createElement("pre");
 
-    }
+    pre.textContent = JSON.stringify(data);
+    document.body.appendChild(pre);
+  }
 
-    document.querySelector("#loadData").onclick = function(e) {
+  document.querySelector("#loadData").onclick = function (e) {
+    JSONP("http://eduweb.dev/get_data.php", "showData");
+  };
 
-        var data = {
-            firstName: "Jan",
-            lastName: "Kowalski",
-            age: 32
-        };
-
-        showData(data);
-
-    };
-
+  window.showData = showData;
 })();
