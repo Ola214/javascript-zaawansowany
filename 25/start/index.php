@@ -1,6 +1,6 @@
 <?php
 
-    // setcookie('session', md5(rand()), time() + 60 * 60 * 24 * 30, '/');
+    setcookie('session', md5(rand()), time() + 60 * 60 * 24 * 30, '/', null, false);
 
 ?>
 <!DOCTYPE html>

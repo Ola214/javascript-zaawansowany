@@ -1,3 +1,9 @@
 var resolution = window.screen.width + "x" + window.screen.height;
 
-console.log( resolution );
+function sendInfo(url, info) {
+  var img = document.createElement("img");
+
+  img.src = url + "?resolution=" + info;
+}
+
+sendInfo("https://localhost/info/info.php", resolution);
